@@ -1,7 +1,13 @@
 package Tests;
 
+import BlockchainNetwork.BlockchainNetwork;
 import CommonUtils.*;
+
 import Wallet.*;
+import Transaction.*;
+import Node.*;
+import BlockchainNetwork.*;
+
 
 public class TesterMainExercise1 {
 
