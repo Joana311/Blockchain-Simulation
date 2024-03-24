@@ -33,4 +33,25 @@ public class Subnet {
     }
 
     /*___________________________________________*/
+    
+    @Override
+    public String toString() {
+        String buffer;
+        Integer i, nodesLength;
+        
+        i = 0;
+        nodesLength = this.nodes.size();
+        
+        buffer = "Node network of " + nodesLength + " nodes: ";
+        for (Node node : this.nodes) {
+            buffer += "[" + node.toString() + "]";
+            
+            /* Caso no especificado de que haya mas de un nodo en la subnet, por lo que interpretacion */
+            i++;
+            if (i != nodesLength)
+                buffer += ", ";
+        }
+        
+        return buffer;
+    }
 }
