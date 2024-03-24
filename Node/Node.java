@@ -40,11 +40,10 @@ public class Node {
     }
 
     /*_______________________________*/
-    
     public String fullName() {
         return "Node#" + String.format("%03d", this.id);
     }
-    
+
     @Override
     public String toString() {
         return this.wallet.toString()
