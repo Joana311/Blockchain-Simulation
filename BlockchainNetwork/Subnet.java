@@ -37,7 +37,7 @@ public class Subnet {
     @Override
     public String toString() {
         String buffer;
-        Integer i, nodesLength;
+        int i, nodesLength;
         
         i = 0;
         nodesLength = this.nodes.size();
