@@ -2,6 +2,7 @@ package Tests;
 
 import Interfaces.*;
 import Transaction.*;
+import Exceptions.*;
 
 public class TesterMainExercise2 extends TesterMainExercise1 {
 
@@ -19,7 +20,7 @@ public class TesterMainExercise2 extends TesterMainExercise1 {
         }
     }
 
-    public void createTransactions() {
+    /*public void createTransactions() {
         try {
             Transaction tr1 = node.createTransaction(wallet2, 10);
             network.broadcast(new TransactionNotification(tr1));
@@ -28,5 +29,10 @@ public class TesterMainExercise2 extends TesterMainExercise1 {
         } catch (TransactionException e) {
             System.err.println(e);
         }
+    }*/
+    public static void main(String[] args) {
+        TesterMainExercise2 tme = new TesterMainExercise2();
+        tme.buildFaultyNetwork();
+        //tme.createTransactions();
     }
 }

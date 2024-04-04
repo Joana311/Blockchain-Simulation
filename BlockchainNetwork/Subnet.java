@@ -37,18 +37,19 @@ public class Subnet implements IConnectable {
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
-    
+
     @Override
     public IConnectable getParent() {
         return this.parent;
     }
-    
+
     public void setParent(IConnectable parent) {
         this.parent = parent;
     }
-    
+
     @Override
-    public void broadcast(IMessage msg) {}
+    public void broadcast(IMessage msg) {
+    }
 
     /*___________________________________________*/
     @Override

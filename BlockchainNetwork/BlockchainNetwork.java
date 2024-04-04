@@ -10,7 +10,7 @@ public class BlockchainNetwork implements IConnectable {
     private String networkName;
     private List<IConnectable> elements = new ArrayList<>();
     private IConnectable parent;
-    
+
     public BlockchainNetwork(String networkName) {
         this.networkName = networkName;
         this.parent = null;
@@ -32,26 +32,29 @@ public class BlockchainNetwork implements IConnectable {
     public void setElements(List<IConnectable> elements) {
         this.elements = elements;
     }
-    
+
     /*_____________________________________________*/
-    
     public void setParent(IConnectable parent) {
         this.parent = parent;
     }
-    
+
     @Override
     public IConnectable getParent() {
         return this.parent;
     }
-    
+
     @Override
-    public void broadcast(IMessage msg) {};
+    public void broadcast(IMessage msg) {
+    }
+
+    ;
     
     /*_____________________________________________*/
     public BlockchainNetwork connect(IConnectable data) throws ConnectionException {
-        if (data == null)
+        if (data == null) {
             return this;
-        
+        }
+
         /* The variable is saved on the correct list */
         if ((data instanceof Node || data instanceof MiningNode)
                 && data.getParent() != null) {
@@ -64,15 +67,16 @@ public class BlockchainNetwork implements IConnectable {
 
         /* Added the element to the list */
         this.elements.add(data);
-        
+
         /* Set the data parent */
-        if (data instanceof Node || data instanceof MiningNode)
-            ((Node)data).setParent(this);
-        else if (data instanceof Subnet)
-            ((Subnet)data).setParent(this);
-        else
-            ((BlockchainNetwork)data).setParent(this);
-        
+        if (data instanceof Node || data instanceof MiningNode) {
+            ((Node) data).setParent(this);
+        } else if (data instanceof Subnet) {
+            ((Subnet) data).setParent(this);
+        } else {
+            ((BlockchainNetwork) data).setParent(this);
+        }
+
         /* Print connection */
         System.out.println(this.networkName + " - new peer connected: " + data);
         return this;

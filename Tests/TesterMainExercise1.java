@@ -7,7 +7,7 @@ import Wallet.*;
 import Transaction.*;
 import Node.*;
 import BlockchainNetwork.*;
-
+import Exceptions.*;
 
 public class TesterMainExercise1 {
 
@@ -22,21 +22,22 @@ public class TesterMainExercise1 {
         this.wallet1 = new Wallet("Bob", CommonUtils.sha1("PK-Bob"), 10);
         this.wallet2 = new Wallet("Alice", CommonUtils.sha1("PK-Alice"), 100);
         this.wallet3 = new Wallet("Paul", CommonUtils.sha1("PK-Pauk"), 777);
-        
+
         //Create the nodes with the wallets
         node = new Node(wallet1);
         miningNode = new MiningNode(wallet2, 10000);
-        
+
         //Create a subnet inside a network
         miningNode2 = new MiningNode(wallet3, 10000);
         subnet = new Subnet(miningNode2); // we could pass more nodes here
-        
+
         //Create the network and connect the elements
         this.network = new BlockchainNetwork("ADSOF blockchain");
+
         network.connect(node)
                 .connect(subnet)
                 .connect(miningNode);
-        
+
         //create example transaction, which transfers 10 coins from wallet1 to wallet2
         new Transaction(wallet1, wallet2, 10);
     }

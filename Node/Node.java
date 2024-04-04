@@ -47,25 +47,26 @@ public class Node implements IConnectable {
     public IConnectable getParent() {
         return this.parent;
     }
-    
+
     public void setParent(IConnectable parent) {
         this.parent = parent;
     }
-    
+
     @Override
-    public void broadcast(IMessage msg) {}
-    
+    public void broadcast(IMessage msg) {
+    }
+
     /*_______________________________*/
-    
     public Transaction createTransaction(Wallet wallet, Integer balance) throws TransactionException {
-        if (balance < 0)
+        if (balance < 0) {
             throw new TransactionException(this.wallet, wallet, balance);
-        
+        }
+
         Transaction transaction = new Transaction(this.wallet, wallet, balance);
         this.transactions.add(transaction);
         return transaction;
     }
-    
+
     /*_______________________________*/
     public String fullName() {
         return "Node#" + String.format("%03d", this.id);
