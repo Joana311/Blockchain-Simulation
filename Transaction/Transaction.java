@@ -12,8 +12,8 @@ public class Transaction {
     private Integer balance;
 
     private void assignId() {
-        count++;
         this.id = count;
+        count++;
     }
 
     public Transaction(Wallet origin, Wallet destination, Integer balance) {
