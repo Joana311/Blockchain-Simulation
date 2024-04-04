@@ -7,17 +7,29 @@ public class Transaction {
     private static Integer count = 0;
 
     private Integer id;
-    private Wallet origin;
-    private Wallet destination;
+    private String originPublicKey;
+    private String destinationPublicKey;
     private Integer balance;
 
-    public Transaction(Wallet origin, Wallet destination, Integer balance) {
-        this.origin = origin;
-        this.destination = destination;
-        this.balance = balance;
-
+    private void assignId() {
         count++;
         this.id = count;
+    }
+    
+    public Transaction(Wallet origin, Wallet destination, Integer balance) {
+        this.originPublicKey = origin.getPublicKey();
+        this.destinationPublicKey = destination.getPublicKey();
+        this.balance = balance;
+        
+        this.assignId();
+    }
+    
+    public Transaction(String originPublicKey, String destinationPublicKey, Integer balance) {
+        this.originPublicKey = originPublicKey;
+        this.destinationPublicKey = destinationPublicKey;
+        this.balance = balance;
+
+        this.assignId();
     }
 
     /*_______________________________________________________________*/
@@ -25,20 +37,20 @@ public class Transaction {
         return this.id;
     }
 
-    public Wallet getOrigin() {
-        return this.origin;
+    public String getOriginPublicKey() {
+        return this.originPublicKey;
     }
 
-    public void setOrigin(Wallet origin) {
-        this.origin = origin;
+    public void setOriginPublicKey(String originPublicKey) {
+        this.originPublicKey = originPublicKey;
     }
 
-    public Wallet getDestination() {
-        return this.destination;
+    public String getDestinationPublicKey() {
+        return this.destinationPublicKey;
     }
 
-    public void setDestination(Wallet destination) {
-        this.destination = destination;
+    public void setDestinationPublicKey(String destinationPublicKey) {
+        this.destinationPublicKey = destinationPublicKey;
     }
 
     public Integer getBalance() {
@@ -53,8 +65,8 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction " + this.id
-                + "| from: " + this.origin.getPublicKey()
-                + ", to:" + this.destination.getPublicKey()
+                + "| from: " + this.originPublicKey
+                + ", to:" + this.destinationPublicKey
                 + "quantity: " + this.balance;
     }
 }
