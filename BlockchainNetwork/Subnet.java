@@ -2,21 +2,27 @@ package BlockchainNetwork;
 
 import java.util.*;
 import Node.*;
+import Interfaces.*;
 
-public class Subnet {
+public class Subnet implements IConnectable {
 
     private static Integer count = 0;
 
     private Integer id;
-    private HashSet<Node> nodes = new HashSet<>();
+    private List<Node> nodes = new ArrayList<>();
+    private IConnectable parent;
 
     public Subnet(Node... nodes) {
         /* The id is setted, and the static value is incremented */
         count++;
         this.id = count;
 
-        /* The nodes are inserted on the HashSet */
-        this.nodes.addAll(Arrays.asList(nodes));
+        /* The nodes are inserted on the HashSet, and the parent is setted */
+        for (Node current : nodes) {
+            current.setParent(this);
+            this.nodes.add(current);
+        }
+        this.parent = null;
     }
 
     /*___________________________________________*/
@@ -24,13 +30,25 @@ public class Subnet {
         return this.id;
     }
 
-    public HashSet<Node> getNodes() {
+    public List<Node> getNodes() {
         return this.nodes;
     }
 
-    public void setNodes(HashSet<Node> nodes) {
+    public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
+    
+    @Override
+    public IConnectable getParent() {
+        return this.parent;
+    }
+    
+    public void setParent(IConnectable parent) {
+        this.parent = parent;
+    }
+    
+    @Override
+    public void broadcast(IMessage msg) {}
 
     /*___________________________________________*/
     @Override
