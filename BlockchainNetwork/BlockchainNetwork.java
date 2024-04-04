@@ -2,14 +2,18 @@ package BlockchainNetwork;
 
 import java.util.*;
 import Node.*;
+import Exceptions.*;
+import Interfaces.*;
 
-public class BlockchainNetwork {
+public class BlockchainNetwork implements IConnectable {
 
     private String networkName;
-    private List<Object> elements = new ArrayList<>();
-
+    private List<IConnectable> elements = new ArrayList<>();
+    private IConnectable parent;
+    
     public BlockchainNetwork(String networkName) {
         this.networkName = networkName;
+        this.parent = null;
     }
 
     /*_____________________________________________*/
@@ -21,24 +25,55 @@ public class BlockchainNetwork {
         this.networkName = networkName;
     }
 
-    public List<Object> getElements() {
+    public List<IConnectable> getElements() {
         return this.elements;
     }
 
-    public void setElements(List<Object> elements) {
+    public void setElements(List<IConnectable> elements) {
         this.elements = elements;
     }
-
+    
     /*_____________________________________________*/
-    public BlockchainNetwork connect(Object data) {
-
-        /* The variable is saved on the correct list */
-        if (this.elements.contains(data)) {
+    
+    public void setParent(IConnectable parent) {
+        this.parent = parent;
+    }
+    
+    @Override
+    public IConnectable getParent() {
+        return this.parent;
+    }
+    
+    @Override
+    public void broadcast(IMessage msg) {};
+    
+    /*_____________________________________________*/
+    public BlockchainNetwork connect(IConnectable data) throws ConnectionException {
+        if (data == null)
             return this;
+        
+        /* The variable is saved on the correct list */
+        if ((data instanceof Node || data instanceof MiningNode)
+                && data.getParent() != null) {
+            if (data.getParent() == this) {
+                throw new ConnectionException((Node) data);
+            } else {
+                throw new DuplicateConnectionException((Node) data);
+            }
         }
-        this.elements.add(data);
 
-        /* The connection is printed */
+        /* Added the element to the list */
+        this.elements.add(data);
+        
+        /* Set the data parent */
+        if (data instanceof Node || data instanceof MiningNode)
+            ((Node)data).setParent(this);
+        else if (data instanceof Subnet)
+            ((Subnet)data).setParent(this);
+        else
+            ((BlockchainNetwork)data).setParent(this);
+        
+        /* Print connection */
         System.out.println(this.networkName + " - new peer connected: " + data);
         return this;
     }
