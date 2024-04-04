@@ -4,45 +4,42 @@ import java.util.*;
 import Interfaces.*;
 
 public class Subnet extends BlockchainComponent {
-    
+
     private List<Node> nodes = new ArrayList<>();
-    
+
     public Subnet(Node... nodes) {
         super();
-        
+
         for (Node current : nodes) {
             current.setParent(this);
             this.nodes.add(current);
         }
     }
-    
+
     /*____________________________________________________________________*/
-    
     public List<Node> getNodes() {
         return this.nodes;
     }
-    
+
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
-    
+
     /*____________________________________________________________________*/
-    
     @Override
     public void broadcast(IMessage msg) {
-        System.out.println( "[" + this.fullName() + "] " + msg.getMessage());
+        System.out.println("[" + this.fullName() + "] " + msg.getMessage());
         for (Node node : this.nodes) {
             node.broadcast(msg);
         }
     }
-    
+
     @Override
     public String fullName(String separator) {
         return "Subnet" + separator + this.formatId();
     }
-    
+
     /*____________________________________________________________________*/
-    
     @Override
     public String toString() {
         String buffer;
