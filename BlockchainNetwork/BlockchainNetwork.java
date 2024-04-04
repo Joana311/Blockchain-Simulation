@@ -45,9 +45,10 @@ public class BlockchainNetwork implements IConnectable {
 
     @Override
     public void broadcast(IMessage msg) {
+        for (IConnectable element : this.elements) {
+            element.broadcast(msg);
+        }
     }
-
-    ;
     
     /*_____________________________________________*/
     public BlockchainNetwork connect(IConnectable data) throws ConnectionException {

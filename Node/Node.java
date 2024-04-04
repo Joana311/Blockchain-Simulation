@@ -54,6 +54,7 @@ public class Node implements IConnectable {
 
     @Override
     public void broadcast(IMessage msg) {
+        msg.process(this);
     }
 
     /*_______________________________*/

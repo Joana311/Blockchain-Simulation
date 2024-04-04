@@ -16,6 +16,7 @@ public class Subnet implements IConnectable {
         /* The id is setted, and the static value is incremented */
         count++;
         this.id = count;
+        
 
         /* The nodes are inserted on the HashSet, and the parent is setted */
         for (Node current : nodes) {
@@ -49,9 +50,18 @@ public class Subnet implements IConnectable {
 
     @Override
     public void broadcast(IMessage msg) {
+        System.out.println( "[" + this.fullName() + "] " + msg.getMessage());
+        for (Node node : this.nodes) {
+            node.broadcast(msg);
+        }
     }
 
     /*___________________________________________*/
+    
+    public String fullName() {
+        return "Subnet#" + String.format("%03d", this.id);
+    }
+    
     @Override
     public String toString() {
         String buffer;

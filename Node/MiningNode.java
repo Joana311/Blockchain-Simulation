@@ -1,5 +1,6 @@
 package Node;
 
+import Interfaces.IMessage;
 import Wallet.*;
 import Transaction.*;
 
@@ -21,10 +22,15 @@ public class MiningNode extends Node {
         this.quantity = quantity;
     }
 
-    /*________________________________*/
     @Override
-    public String toString() {
-        return this.getWallet().toString()
-                + " | @MiningNode#" + String.format("%03d", this.getId());
+    public void broadcast(IMessage msg) {
+        msg.process(this);
+    }
+    
+    /*________________________________*/
+    
+    @Override
+    public String fullName() {
+        return "MiningNode#" + String.format("%03d", this.getId());
     }
 }
