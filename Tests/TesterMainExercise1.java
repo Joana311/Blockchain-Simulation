@@ -5,9 +5,8 @@ import CommonUtils.*;
 
 import Wallet.*;
 import Transaction.*;
-import Node.*;
+import BlockchainComponents.*;
 import BlockchainNetwork.*;
-import Exceptions.*;
 
 public class TesterMainExercise1 {
 

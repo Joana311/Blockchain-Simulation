@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Node.*;
+import BlockchainComponents.*;
 
 public interface IMessage {
 

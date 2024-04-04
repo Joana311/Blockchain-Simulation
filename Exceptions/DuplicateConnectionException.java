@@ -1,6 +1,6 @@
 package Exceptions;
 
-import Node.*;
+import BlockchainComponents.*;
 
 public class DuplicateConnectionException extends ConnectionException {
 

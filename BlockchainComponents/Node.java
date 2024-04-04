@@ -1,63 +1,53 @@
-package Node;
+package BlockchainComponents;
 
 import java.util.*;
-import Wallet.*;
 import Transaction.*;
-import Exceptions.*;
+import Wallet.*;
 import Interfaces.*;
+import Exceptions.*;
 
-public class Node implements IConnectable {
-
-    public static Integer count = 0;
-
-    private final Integer id;
+public class Node extends BlockchainComponent {
+    
     private Wallet wallet;
     private List<Transaction> transactions = new ArrayList<>();
-    private IConnectable parent;
-
+    
     public Node(Wallet wallet) {
+        super();
         this.wallet = wallet;
-        this.parent = null;
-        this.id = count;
-        count++;
     }
-
-    /*_______________________________*/
-    public Integer getId() {
-        return this.id;
-    }
-
+    
+    /*____________________________________________________________________*/
+    
     public Wallet getWallet() {
         return this.wallet;
     }
-
+    
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
     }
-
+    
     public List<Transaction> getTransactions() {
         return this.transactions;
     }
-
+    
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
-
-    @Override
-    public IConnectable getParent() {
-        return this.parent;
-    }
-
-    public void setParent(IConnectable parent) {
-        this.parent = parent;
-    }
-
+    
+    /*____________________________________________________________________*/
+    
     @Override
     public void broadcast(IMessage msg) {
         msg.process(this);
     }
-
-    /*_______________________________*/
+    
+    @Override
+    public String fullName(String separator) {
+        return "Node" + separator + this.formatId();
+    }
+    
+    /*____________________________________________________________________*/
+    
     private Transaction createTransactionMethod(String destinationPublicKey, Integer balance) throws TransactionException {
         String originPublicKey = this.wallet.getPublicKey();
 
@@ -77,12 +67,9 @@ public class Node implements IConnectable {
     public Transaction createTransaction(String destinationPublicKey, Integer balance) throws TransactionException {
         return createTransactionMethod(destinationPublicKey, balance);
     }
-
-    /*_______________________________*/
-    public String fullName() {
-        return "Node#" + String.format("%03d", this.id);
-    }
-
+    
+    /*____________________________________________________________________*/
+    
     @Override
     public String toString() {
         return this.wallet.toString()

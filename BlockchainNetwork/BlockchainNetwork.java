@@ -1,7 +1,7 @@
 package BlockchainNetwork;
 
 import java.util.*;
-import Node.*;
+import BlockchainComponents.*;
 import Exceptions.*;
 import Interfaces.*;
 
