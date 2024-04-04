@@ -1,14 +1,21 @@
 package Exceptions;
 
-public class ConnectionException extends Exception{
+import Node.*;
+
+public class ConnectionException extends RuntimeException {
+    private Node node;
     
-    private String message;
-    
-    public ConnectionException(String message) {
-        this.message = message;
+    public ConnectionException(Node node) {
+        this.node = node;
     }
     
-    public String getMessage() {
-        return this.message;
+    public Node getNode() {
+        return this.node;
+    }
+    
+    @Override
+    public String toString() {
+        return "Connection exception: Node " + String.format("%03d", this.node.getId()) + 
+                " is already connected to the network";
     }
 }

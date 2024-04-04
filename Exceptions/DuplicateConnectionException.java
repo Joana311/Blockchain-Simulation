@@ -1,13 +1,15 @@
 package Exceptions;
 
-public class DuplicateConnectionException extends Exception {
-    private String message;
-    
-    public DuplicateConnectionException(String message) {
-        this.message = message;
+import Node.*;
+
+public class DuplicateConnectionException extends ConnectionException {
+    public DuplicateConnectionException(Node node) {
+        super(node);
     }
-    
-    public String getMessage() {
-        return this.message;
+
+    @Override
+    public String toString() {
+        return "Connection exception: Node " + String.format("%03d", this.getNode().getId()) +
+                " is connected to a different network";
     }
 }
