@@ -4,20 +4,20 @@ import Wallet.*;
 
 public class TransactionException extends Exception {
 
-    private Wallet origin;
-    private Wallet destination;
-    private Integer balance;
+    private final String originPublicKey;
+    private final String destinationPublicKey;
+    private final Integer balance;
 
-    public TransactionException(Wallet origin, Wallet destination, Integer balance) {
-        this.origin = origin;
-        this.destination = destination;
+    public TransactionException(String originPublicKey, String destinationPublicKey, Integer balance) {
+        this.originPublicKey = originPublicKey;
+        this.destinationPublicKey = destinationPublicKey;
         this.balance = balance;
     }
 
     @Override
     public String toString() {
-        return "Negative transfer attempt: source: " + this.origin.getPublicKey()
-                + ", receiver: " + this.origin.getPublicKey()
+        return "Negative transfer attempt: source: " + this.originPublicKey
+                + ", receiver: " + this.destinationPublicKey
                 + ", amount: " + this.balance;
     }
 }
