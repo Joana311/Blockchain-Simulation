@@ -3,12 +3,12 @@ package Wallet;
 public class Wallet {
 
     private String name;
-    private String hash;
+    private String publicKey;
     private Integer balance;
 
-    public Wallet(String name, String hash, Integer balance) {
+    public Wallet(String name, String publicKey, Integer balance) {
         this.name = name;
-        this.hash = hash;
+        this.publicKey = publicKey;
         this.balance = balance;
     }
 
@@ -21,12 +21,12 @@ public class Wallet {
         this.name = name;
     }
 
-    public String getHash() {
-        return this.hash;
+    public String getPublicKey() {
+        return this.publicKey;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setPublicKey(String hash) {
+        this.publicKey = hash;
     }
 
     public Integer getBalance() {
@@ -41,7 +41,7 @@ public class Wallet {
     @Override
     public String toString() {
         return "u: " + this.name
-                + ", PK:" + this.hash
+                + ", PK:" + this.publicKey
                 + ", balance: " + this.balance;
     }
 

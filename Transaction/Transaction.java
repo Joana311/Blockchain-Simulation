@@ -53,8 +53,8 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction " + this.id
-                + "| from: " + this.origin.getHash()
-                + ", to:" + this.destination.getHash()
+                + "| from: " + this.origin.getPublicKey()
+                + ", to:" + this.destination.getPublicKey()
                 + "quantity: " + this.balance;
     }
 }

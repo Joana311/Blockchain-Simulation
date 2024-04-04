@@ -16,8 +16,8 @@ public class TransactionException extends Exception {
 
     @Override
     public String toString() {
-        return "Negative transfer attempt: source" + this.origin.getHash()
-                + ", receiver: " + this.origin.getHash()
+        return "Negative transfer attempt: source: " + this.origin.getPublicKey()
+                + ", receiver: " + this.origin.getPublicKey()
                 + ", amount: " + this.balance;
     }
 }
