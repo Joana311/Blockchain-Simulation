@@ -30,6 +30,7 @@ public class TesterMainExercise2 extends TesterMainExercise1 {
             System.err.println(e);
         }
     }*/
+
     public static void main(String[] args) {
         TesterMainExercise2 tme = new TesterMainExercise2();
         tme.buildFaultyNetwork();

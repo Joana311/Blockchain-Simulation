@@ -15,15 +15,15 @@ public class Transaction {
         count++;
         this.id = count;
     }
-    
+
     public Transaction(Wallet origin, Wallet destination, Integer balance) {
         this.originPublicKey = origin.getPublicKey();
         this.destinationPublicKey = destination.getPublicKey();
         this.balance = balance;
-        
+
         this.assignId();
     }
-    
+
     public Transaction(String originPublicKey, String destinationPublicKey, Integer balance) {
         this.originPublicKey = originPublicKey;
         this.destinationPublicKey = destinationPublicKey;

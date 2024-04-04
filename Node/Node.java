@@ -57,22 +57,22 @@ public class Node implements IConnectable {
     }
 
     /*_______________________________*/
-    
     private Transaction createTransactionMethod(String destinationPublicKey, Integer balance) throws TransactionException {
         String originPublicKey = this.wallet.getPublicKey();
-        
-        if (balance < 0)
+
+        if (balance < 0) {
             throw new TransactionException(originPublicKey, destinationPublicKey, balance);
-        
+        }
+
         Transaction transaction = new Transaction(originPublicKey, destinationPublicKey, balance);
         this.transactions.add(transaction);
         return transaction;
     }
-    
+
     public Transaction createTransaction(Wallet destinationWallet, Integer balance) throws TransactionException {
         return createTransactionMethod(destinationWallet.getPublicKey(), balance);
     }
-    
+
     public Transaction createTransaction(String destinationPublicKey, Integer balance) throws TransactionException {
         return createTransactionMethod(destinationPublicKey, balance);
     }
