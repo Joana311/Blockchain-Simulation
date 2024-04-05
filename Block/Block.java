@@ -36,4 +36,57 @@ public class Block {
         /* Added arguments */
         this.transaction = transaction;
     }
+    
+    /*____________________________________________________________________*/
+    
+    public Integer getId() {
+        return this.id;
+    }
+    
+    public Integer getVersion() {
+        return this.version;
+    }
+    
+    public Integer getNonce() {
+        return this.Nonce;
+    }
+    
+    public Integer getTimestamp() {
+        return this.timestamp;
+    }
+    
+    public Integer getDifficulty() {
+        return this.difficulty;
+    }
+    
+    public boolean getValidated() {
+        return this.validated;
+    }
+    
+    public void setValidated(boolean validated) {
+        this.validated = validated;
+    }
+    
+    public String getHash() {
+        return this.hash;
+    }
+    
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+    
+    public Block getPrevious() {
+        return this.previous;
+    }
+    
+    public void setPrevious(Block previous) {
+        this.previous = previous;
+    }
+    
+    public Transaction getTransaction() {
+        return this.transaction;
+    }
+    
+    /*____________________________________________________________________*/
+    
 }
