@@ -4,6 +4,7 @@ import Interfaces.*;
 import Wallet.*;
 import Block.*;
 import java.util.*;
+import CommonUtils.*;
 import Transaction.*;
 
 public class MiningNode extends Node implements IMiningMethod {
@@ -50,10 +51,24 @@ public class MiningNode extends Node implements IMiningMethod {
 
     /*____________________________________________________________________*/
     
-    /* TODO */
+    /*
+        Version del bloque
+        Hash del bloque anterior o GENESIS_BLOCK
+        Timestamp
+        Dificultad
+        Nonce
+    */
     @Override
     public String createHash(Block block) {
-        return "";
+        String buffer;
+        
+        buffer = block.getVersion().toString() + 
+                (block.getPrevious() != null ? block.getPrevious().getHash() : BlockConfig.GENESIS_BLOCK) + 
+                block.getTimestamp() +
+                block.getDifficulty() +
+                block.getNonce();
+        
+        return CommonUtils.sha256(buffer);
     }
     
     /* TODO */
