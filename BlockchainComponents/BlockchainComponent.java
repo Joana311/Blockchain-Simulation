@@ -37,9 +37,7 @@ public abstract class BlockchainComponent implements IConnectable {
      * a '#' between the component type and its ide
      * @return the full name of the node. Ex.: "<ComponentType>#<ID>"
      */
-    public String fullName() {
-        return this.fullName("#");
-    }
+    public abstract String fullName();
 
     /**
      * @brief Function to get the id formatted with 3 numbers.
@@ -53,5 +51,4 @@ public abstract class BlockchainComponent implements IConnectable {
     @Override
     public abstract void broadcast(IMessage msg);
 
-    public abstract String fullName(String separator);
 }

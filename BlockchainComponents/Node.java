@@ -40,8 +40,8 @@ public class Node extends BlockchainComponent {
     }
 
     @Override
-    public String fullName(String separator) {
-        return "Node" + separator + this.formatId();
+    public String fullName() {
+        return "Node#" + this.formatId();
     }
 
     /*____________________________________________________________________*/

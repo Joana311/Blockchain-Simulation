@@ -28,8 +28,8 @@ public class MiningNode extends Node {
     }
 
     @Override
-    public String fullName(String separator) {
-        return "MiningNode" + separator + this.formatId();
+    public String fullName() {
+        return "MiningNode#" + this.formatId();
     }
 
     /*____________________________________________________________________*/

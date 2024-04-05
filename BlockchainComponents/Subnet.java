@@ -35,8 +35,8 @@ public class Subnet extends BlockchainComponent {
     }
 
     @Override
-    public String fullName(String separator) {
-        return "Subnet" + separator + this.formatId();
+    public String fullName() {
+        return "Subnet#" + this.formatId();
     }
 
     /*____________________________________________________________________*/
