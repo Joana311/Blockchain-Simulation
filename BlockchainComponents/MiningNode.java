@@ -1,11 +1,12 @@
 package BlockchainComponents;
 
-import Interfaces.IMessage;
+import Interfaces.*;
 import Wallet.*;
 import Block.*;
 import java.util.*;
+import Transaction.*;
 
-public class MiningNode extends Node {
+public class MiningNode extends Node implements IMiningMethod {
 
     Integer balance;
     private List<Block> validatedBlocks = new ArrayList<>();
@@ -47,5 +48,19 @@ public class MiningNode extends Node {
         return "MiningNode#" + this.formatId();
     }
 
+    /*____________________________________________________________________*/
+    
+    /* TODO */
+    @Override
+    public String createHash(Block block) {
+        return "";
+    }
+    
+    /* TODO */
+    @Override
+    public Block mineBlock(Transaction transaction, Block previousConfirmedBlock, String minerKey) {
+        return null;
+    }
+    
     /*____________________________________________________________________*/
 }
