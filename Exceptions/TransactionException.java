@@ -2,7 +2,7 @@ package Exceptions;
 
 import Wallet.*;
 
-public class TransactionException extends Exception {
+public class TransactionException extends RuntimeException {
 
     private final String originPublicKey;
     private final String destinationPublicKey;
