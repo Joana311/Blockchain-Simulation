@@ -10,7 +10,8 @@ import Transaction.*;
 public class MiningNode extends Node implements IMiningMethod {
 
     Integer balance;
-    private List<Block> validatedBlocks = new ArrayList<>();
+    private List<Transaction> validatedTransactions = new ArrayList<>();
+    private List<Block> validatedBlock = new ArrayList<>();
 
     public MiningNode(Wallet wallet, Integer balance) {
         super(wallet);
@@ -26,22 +27,27 @@ public class MiningNode extends Node implements IMiningMethod {
         this.balance = balance;
     }
     
-    public List<Block> getValidatedBlocks() {
-        return this.validatedBlocks;
+    public List<Transaction> getValidatedTransactions() {
+        return this.validatedTransactions;
     }
-    
-    public void setValidatedBlocks(List<Block> validatedBlocks) {
-        this.validatedBlocks = validatedBlocks;
-    }
-    
-    public void addValidatedBlock(Block block) {
-        this.validatedBlocks.add(block);
+        
+    public List<Block> getValidatedBlock() {
+        return this.validatedBlock;
     }
 
     /*____________________________________________________________________*/
     @Override
     public void broadcast(IMessage msg) {
-        msg.process(this);
+        Transaction transaction = null;
+        
+        if (msg instanceof TransactionNotification transactionNotification) {
+            transaction = transactionNotification.getTransaction();
+        }
+        
+        /* If the transaction is not stored, is stored and a block is created and validated */
+        if (this.validatedTransactions.contains(transaction) == false) {
+            this.validatedTransactions.add(transaction);            
+        }
     }
 
     @Override
