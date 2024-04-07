@@ -31,11 +31,15 @@ public class SimpleMining implements IMiningMethod {
         
         return CommonUtils.sha256(buffer);
     }
-    
-    /* TODO */
+
     @Override
     public Block mineBlock(Transaction transaction, Block previousConfirmedBlock, String minerKey) {
-        return null;
+        Block block = new Block(transaction);
+        
+        block.setPrevious(previousConfirmedBlock);
+        block.setHash(this.createHash(block));
+        
+        return block;
     }
     
     /*____________________________________________________________________*/
