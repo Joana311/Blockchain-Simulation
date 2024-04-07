@@ -1,8 +1,8 @@
 package Tests;
 
 import Transaction.*;
-import Node.*;
 import Wallet.*;
+import MiningMethods.*;
 
 public class TesterMainExercise3 extends TesterMainExercise2 {
 
