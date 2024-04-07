@@ -4,18 +4,19 @@ import Interfaces.*;
 import Wallet.*;
 import Block.*;
 import java.util.*;
-import CommonUtils.*;
 import Transaction.*;
 
-public class MiningNode extends Node implements IMiningMethod {
+public class MiningNode extends Node {
 
     Integer balance;
     private List<Transaction> validatedTransactions = new ArrayList<>();
     private List<Block> validatedBlock = new ArrayList<>();
+    IMiningMethod miningMethod;
 
     public MiningNode(Wallet wallet, Integer balance) {
         super(wallet);
         this.balance = balance;
+        this.miningMethod = null;
     }
 
     /*____________________________________________________________________*/
@@ -34,6 +35,10 @@ public class MiningNode extends Node implements IMiningMethod {
     public List<Block> getValidatedBlock() {
         return this.validatedBlock;
     }
+    
+    public void setMiningMethod(IMiningMethod miningMethod) {
+        this.miningMethod = miningMethod;
+    }
 
     /*____________________________________________________________________*/
     @Override
@@ -46,7 +51,8 @@ public class MiningNode extends Node implements IMiningMethod {
         
         /* If the transaction is not stored, is stored and a block is created and validated */
         if (this.validatedTransactions.contains(transaction) == false) {
-            this.validatedTransactions.add(transaction);            
+            this.validatedTransactions.add(transaction);
+            this.miningMethod.mineBlock(transaction, this.validatedBlock.getLast(), this.getWallet().getPublicKey());
         }
     }
 
@@ -55,33 +61,4 @@ public class MiningNode extends Node implements IMiningMethod {
         return "MiningNode#" + this.formatId();
     }
 
-    /*____________________________________________________________________*/
-    
-    /*
-        Version del bloque
-        Hash del bloque anterior o GENESIS_BLOCK
-        Timestamp
-        Dificultad
-        Nonce
-    */
-    @Override
-    public String createHash(Block block) {
-        String buffer;
-        
-        buffer = block.getVersion().toString() + 
-                (block.getPrevious() != null ? block.getPrevious().getHash() : BlockConfig.GENESIS_BLOCK) + 
-                block.getTimestamp() +
-                block.getDifficulty() +
-                block.getNonce();
-        
-        return CommonUtils.sha256(buffer);
-    }
-    
-    /* TODO */
-    @Override
-    public Block mineBlock(Transaction transaction, Block previousConfirmedBlock, String minerKey) {
-        return null;
-    }
-    
-    /*____________________________________________________________________*/
 }
