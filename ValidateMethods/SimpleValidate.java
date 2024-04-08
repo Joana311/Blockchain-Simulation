@@ -9,7 +9,7 @@ public class SimpleValidate implements IValidateMethod {
     
     @Override
     public boolean validate(IMiningMethod miningMethod, Block block) {
-        String hash = miningMethod.createHash(block);
-        return hash.equals(block.getHash());
+        String newHash = miningMethod.createHash(block);
+        return newHash.equals(block.getHash());
     }
 }
