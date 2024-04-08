@@ -3,6 +3,7 @@ package Tests;
 import Transaction.*;
 import Wallet.*;
 import MiningMethods.*;
+import ValidateMethods.*;
 
 public class TesterMainExercise3 extends TesterMainExercise2 {
 

@@ -12,13 +12,13 @@ public class MiningNode extends Node {
     private List<Transaction> validatedTransactions = new ArrayList<>();
     private List<Block> validatedBlock = new ArrayList<>();
     IMiningMethod miningMethod;
-    IValidateMethod validateMethod;
+    IValidateMethod validationMethod;
 
     public MiningNode(Wallet wallet, Integer balance) {
         super(wallet);
         this.balance = balance;
         this.miningMethod = null;
-        this.validateMethod = null;
+        this.validationMethod = null;
     }
 
     /*____________________________________________________________________*/
@@ -42,8 +42,8 @@ public class MiningNode extends Node {
         this.miningMethod = miningMethod;
     }
     
-    public void setValidateMethod(IValidateMethod validateMethod) {
-        this.validateMethod = validateMethod;
+    public void setValidationMethod(IValidateMethod validationMethod) {
+        this.validationMethod = validationMethod;
     }
 
     /*____________________________________________________________________*/
@@ -59,6 +59,7 @@ public class MiningNode extends Node {
         if (this.validatedTransactions.contains(transaction) == false) {
             this.validatedTransactions.add(transaction);
             this.miningMethod.mineBlock(transaction, this.validatedBlock.getLast(), this.getWallet().getPublicKey());
+            //this.getTopParent().broadcast();
         }
     }
 
