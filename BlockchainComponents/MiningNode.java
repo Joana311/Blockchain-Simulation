@@ -12,11 +12,13 @@ public class MiningNode extends Node {
     private List<Transaction> validatedTransactions = new ArrayList<>();
     private List<Block> validatedBlock = new ArrayList<>();
     IMiningMethod miningMethod;
+    IValidateMethod validateMethod;
 
     public MiningNode(Wallet wallet, Integer balance) {
         super(wallet);
         this.balance = balance;
         this.miningMethod = null;
+        this.validateMethod = null;
     }
 
     /*____________________________________________________________________*/
@@ -38,6 +40,10 @@ public class MiningNode extends Node {
     
     public void setMiningMethod(IMiningMethod miningMethod) {
         this.miningMethod = miningMethod;
+    }
+    
+    public void setValidateMethod(IValidateMethod validateMethod) {
+        this.validateMethod = validateMethod;
     }
 
     /*____________________________________________________________________*/
