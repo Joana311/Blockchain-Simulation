@@ -56,9 +56,13 @@ public class MiningNode extends Node {
         }
         
         /* If the transaction is not stored, is stored and a block is created and validated */
-        if (this.validatedTransactions.contains(transaction) == false) {
+        if (this.validatedTransactions.contains(transaction) == false &&
+                this.miningMethod != null && this.validationMethod != null) {
+            
+            Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
+            
             this.validatedTransactions.add(transaction);
-            this.miningMethod.mineBlock(transaction, this.validatedBlock.getLast(), this.getWallet().getPublicKey());
+            this.miningMethod.mineBlock(transaction, lastValidatedBlock, this.getWallet().getPublicKey());
             //this.getTopParent().broadcast();
         }
     }
