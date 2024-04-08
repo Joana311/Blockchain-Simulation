@@ -37,6 +37,7 @@ public class SimpleMining implements IMiningMethod {
         Block block = new Block(transaction);
         
         block.setPrevious(previousConfirmedBlock);
+        block.setMinerKey(minerKey);
         block.setHash(this.createHash(block));
         
         return block;

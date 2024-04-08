@@ -18,7 +18,8 @@ public class Block {
     private Block previous;
 
     private Transaction transaction;
-
+    private String minerKey;
+    
     public Block(Transaction transaction) {
         /* Set the block id */
         this.id = count;
@@ -35,6 +36,7 @@ public class Block {
 
         /* Added arguments */
         this.transaction = transaction;
+        this.minerKey = null;
     }
     
     /*____________________________________________________________________*/
@@ -85,6 +87,14 @@ public class Block {
     
     public Transaction getTransaction() {
         return this.transaction;
+    }
+    
+    public String getMinerKey() {
+        return this.minerKey;
+    }
+    
+    public void setMinerKey(String minerKey) {
+        this.minerKey = minerKey;
     }
     
     /*____________________________________________________________________*/
