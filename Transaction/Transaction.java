@@ -67,6 +67,6 @@ public class Transaction {
         return "Transaction " + this.id
                 + "| from: " + this.originPublicKey
                 + ", to:" + this.destinationPublicKey
-                + "quantity: " + this.balance;
+                + ", quantity: " + this.balance;
     }
 }
