@@ -49,7 +49,7 @@ public class BlockchainNetwork implements IConnectable {
             element.broadcast(msg);
         }
     }
-    
+
     /*_____________________________________________*/
     public BlockchainNetwork connect(IConnectable data) throws ConnectionException {
         if (data == null) {

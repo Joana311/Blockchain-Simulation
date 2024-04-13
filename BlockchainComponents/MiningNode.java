@@ -30,33 +30,32 @@ public class MiningNode extends Node {
     public void setBalance(Integer balance) {
         this.balance = balance;
     }
-    
+
     public List<Transaction> getValidatedTransactions() {
         return this.validatedTransactions;
     }
-        
+
     public List<Block> getValidatedBlock() {
         return this.validatedBlock;
     }
-    
+
     public void setMiningMethod(IMiningMethod miningMethod) {
         this.miningMethod = miningMethod;
     }
-    
+
     public void setValidationMethod(IValidateMethod validationMethod) {
         this.validationMethod = validationMethod;
     }
 
     /*____________________________________________________________________*/
-    
     @Override
     protected void nodeMine(Transaction transaction) {
-        
+
         /* If the node dont have methods, stop */
-        
-        if (this.miningMethod == null)
-            return ;
-        
+        if (this.miningMethod == null) {
+            return;
+        }
+
         /* Get the info to mine and mine */
         Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
         this.validatedTransactions.add(transaction);
@@ -67,22 +66,23 @@ public class MiningNode extends Node {
         System.out.println("[" + this.fullName() + "] Mined block: " + minedBlock);
         this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
     }
-    
+
     @Override
     protected void nodeValidateBlock(ValidateBlockRq validateBlockRq) {
         /* If the node is the one that created the block, dont do nothing */
         if (validateBlockRq.getNode() == this) {
             System.out.println("[" + this.fullName() + "] You cannot validate your own block");
-            return ;
+            return;
         }
 
         /* If it is another node, it will validate it (if it has a validate method) */
-        if (this.validationMethod == null)
-            return ;
+        if (this.validationMethod == null) {
+            return;
+        }
 
         /* Get the validate status */
         Boolean state = this.validationMethod.validate(this.miningMethod,
-                                                        validateBlockRq.getBlock());
+                validateBlockRq.getBlock());
 
         /* Comunicate it to the rest of the network */
         ValidateBlockRes response = new ValidateBlockRes(validateBlockRq.getBlock(), state, this);

@@ -31,13 +31,14 @@ public class Subnet extends BlockchainComponent {
     @Override
     public void broadcast(IMessage msg) {
         System.out.print("[" + this.fullName() + "] ");
-        if (msg instanceof TransactionNotification)
+        if (msg instanceof TransactionNotification) {
             System.out.println(msg.getMessage());
-        else if (msg instanceof ValidateBlockRq)
+        } else if (msg instanceof ValidateBlockRq) {
             System.out.println("ValidateBlockRq");
-        else if (msg instanceof ValidateBlockRes)
+        } else if (msg instanceof ValidateBlockRes) {
             System.out.println("ValidateBlockRes");
-        
+        }
+
         System.out.println("Broadcasting to " + this.nodes.size() + " nodes:");
         for (Node node : this.nodes) {
             node.broadcast(msg);

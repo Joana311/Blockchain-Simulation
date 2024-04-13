@@ -19,7 +19,7 @@ public class Block {
 
     private Transaction transaction;
     private String minerKey;
-    
+
     public Block(Transaction transaction) {
         /* Set the block id */
         this.id = count;
@@ -38,75 +38,73 @@ public class Block {
         this.transaction = transaction;
         this.minerKey = null;
     }
-    
+
     /*____________________________________________________________________*/
-    
     public Integer getId() {
         return this.id;
     }
-    
+
     public Integer getVersion() {
         return this.version;
     }
-    
+
     public Integer getNonce() {
         return this.Nonce;
     }
-    
+
     public Integer getTimestamp() {
         return this.timestamp;
     }
-    
+
     public Integer getDifficulty() {
         return this.difficulty;
     }
-    
+
     public boolean getValidated() {
         return this.validated;
     }
-    
+
     public void setValidated(boolean validated) {
         this.validated = validated;
     }
-    
+
     public String getHash() {
         return this.hash;
     }
-    
+
     public void setHash(String hash) {
         this.hash = hash;
     }
-    
+
     public Block getPrevious() {
         return this.previous;
     }
-    
+
     public void setPrevious(Block previous) {
         this.previous = previous;
     }
-    
+
     public Transaction getTransaction() {
         return this.transaction;
     }
-    
+
     public String getMinerKey() {
         return this.minerKey;
     }
-    
+
     public void setMinerKey(String minerKey) {
         this.minerKey = minerKey;
     }
-    
+
     /*____________________________________________________________________*/
-    
     @Override
     public String toString() {
-        return "id:" + this.id + ", " +
-                "v:" + this.version + ", " +
-                "nonce: " + this.Nonce + ", " +
-                "ts: " + this.timestamp + ", " +
-                "diff: " + this.difficulty + ", " + 
-                "hash: " + this.hash;
+        return "id:" + this.id + ", "
+                + "v:" + this.version + ", "
+                + "nonce: " + this.Nonce + ", "
+                + "ts: " + this.timestamp + ", "
+                + "diff: " + this.difficulty + ", "
+                + "hash: " + this.hash;
     }
-    
+
 }
