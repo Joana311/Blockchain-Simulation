@@ -28,6 +28,7 @@ public class ValidateBlockRq implements IMessage {
     /* TODO */
     @Override
     public String getMessage() {
-        return null;
+        return "ValidateBlockRq: <b:" + this.block.getId() +
+                ", src: " + this.node.getId() + ">";
     }
 }
