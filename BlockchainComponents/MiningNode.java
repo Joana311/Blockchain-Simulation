@@ -102,7 +102,6 @@ public class MiningNode extends Node {
             
             ValidateBlockRes response = new ValidateBlockRes(validateBlockRq.getBlock(), state, this);
             System.out.println("[" + this.fullName() + "] Emitted Task: " + response.getMessage());
-            System.exit(1);
             this.getTopParent().broadcast(response);
         }
         
