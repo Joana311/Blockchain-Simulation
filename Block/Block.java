@@ -99,4 +99,14 @@ public class Block {
     
     /*____________________________________________________________________*/
     
+    @Override
+    public String toString() {
+        return "id:" + this.id + ", " +
+                "v:" + this.version + ", " +
+                "nonce: " + this.Nonce + ", " +
+                "ts: " + this.timestamp + ", " +
+                "diff: " + this.difficulty + ", " + 
+                "hash: " + this.hash;
+    }
+    
 }
