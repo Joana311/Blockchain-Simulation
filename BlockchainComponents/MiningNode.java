@@ -82,10 +82,15 @@ public class MiningNode extends Node {
                     this.getWallet().getPublicKey());
             
             System.out.println("[" + this.fullName() + "] Mined block: " + minedBlock);
-            
-            System.exit(1);
             this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
+            return ;
         }
+        
+        if (msg instanceof ValidateBlockRq validateBlockRq) {
+            if (validateBlockRq.getNode() == this)
+                System.out.println("[" + this.fullName() + "] You cannot validate your own block");
+        }
+        
     }
 
     @Override
