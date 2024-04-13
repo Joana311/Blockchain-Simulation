@@ -72,7 +72,7 @@ public class MiningNode extends Node {
             Transaction transaction = transactionNotification.getTransaction();
             
             /* If there is any problem trying to mine, exit the function */
-            if (this.miningMethod == null || this.validationMethod == null ||
+            if (this.miningMethod == null ||
                     transaction == null || this.validatedTransactions.contains(transaction) == true)
                 return ;            
             /* Get the info to mine and mine */
@@ -87,8 +87,23 @@ public class MiningNode extends Node {
         }
         
         if (msg instanceof ValidateBlockRq validateBlockRq) {
-            if (validateBlockRq.getNode() == this)
+            /* If the node is the one that created the block, dont do nothing */
+            if (validateBlockRq.getNode() == this) {
                 System.out.println("[" + this.fullName() + "] You cannot validate your own block");
+                return ;
+            }
+            
+            /* If it is another node, it will validate it (if it has a validate method) */
+            if (this.validationMethod == null)
+                return ;
+            
+            Boolean state = this.validationMethod.validate(this.miningMethod,
+                                                            validateBlockRq.getBlock());
+            
+            System.out.println("==> " + state);
+            
+            System.exit(1);
+            
         }
         
     }
