@@ -35,6 +35,8 @@ public class Subnet extends BlockchainComponent {
             System.out.println(msg.getMessage());
         else if (msg instanceof ValidateBlockRq)
             System.out.println("ValidateBlockRq");
+        else if (msg instanceof ValidateBlockRes)
+            System.out.println("ValidateBlockRes");
         
         System.out.println("Broadcasting to " + this.nodes.size() + " nodes:");
         for (Node node : this.nodes) {
