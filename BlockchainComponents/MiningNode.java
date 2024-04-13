@@ -48,63 +48,46 @@ public class MiningNode extends Node {
     }
 
     /*____________________________________________________________________*/
+    
     @Override
-    public void broadcast(IMessage msg) {
+    protected void nodeMine(Transaction transaction) {
         
-        /*if (msg instanceof TransactionNotification transactionNotification) {
-            transaction = transactionNotification.getTransaction();
-        }
+        /* If the node dont have methods, stop */
         
-        if (transaction != null && this.validatedTransactions.contains(transaction) == false &&
-                this.miningMethod != null && this.validationMethod != null) {
-            
-            Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
-            
-            this.validatedTransactions.add(transaction);
-            Block minedBlock = this.miningMethod.mineBlock(transaction, lastValidatedBlock,
-                    this.getWallet().getPublicKey());
-            
-            this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
-        }*/
+        if (this.miningMethod == null)
+            return ;
         
-        msg.process(this);
-        if (msg instanceof TransactionNotification transactionNotification) {
-            Transaction transaction = transactionNotification.getTransaction();
-            
-            /* If there is any problem trying to mine, exit the function */
-            if (this.miningMethod == null ||
-                    transaction == null || this.validatedTransactions.contains(transaction) == true)
-                return ;            
-            /* Get the info to mine and mine */
-            Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
-            this.validatedTransactions.add(transaction);
-            Block minedBlock = this.miningMethod.mineBlock(transaction, lastValidatedBlock,
-                    this.getWallet().getPublicKey());
-            
-            System.out.println("[" + this.fullName() + "] Mined block: " + minedBlock);
-            this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
+        /* Get the info to mine and mine */
+        Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
+        this.validatedTransactions.add(transaction);
+        Block minedBlock = this.miningMethod.mineBlock(transaction, lastValidatedBlock,
+                this.getWallet().getPublicKey());
+
+        /* Print the state and comunicate it to all the network */
+        System.out.println("[" + this.fullName() + "] Mined block: " + minedBlock);
+        this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
+    }
+    
+    @Override
+    protected void nodeValidateBlock(ValidateBlockRq validateBlockRq) {
+        /* If the node is the one that created the block, dont do nothing */
+        if (validateBlockRq.getNode() == this) {
+            System.out.println("[" + this.fullName() + "] You cannot validate your own block");
             return ;
         }
-        
-        if (msg instanceof ValidateBlockRq validateBlockRq) {
-            /* If the node is the one that created the block, dont do nothing */
-            if (validateBlockRq.getNode() == this) {
-                System.out.println("[" + this.fullName() + "] You cannot validate your own block");
-                return ;
-            }
-            
-            /* If it is another node, it will validate it (if it has a validate method) */
-            if (this.validationMethod == null)
-                return ;
-            
-            Boolean state = this.validationMethod.validate(this.miningMethod,
-                                                            validateBlockRq.getBlock());
-            
-            ValidateBlockRes response = new ValidateBlockRes(validateBlockRq.getBlock(), state, this);
-            System.out.println("[" + this.fullName() + "] Emitted Task: " + response.getMessage());
-            this.getTopParent().broadcast(response);
-        }
-        
+
+        /* If it is another node, it will validate it (if it has a validate method) */
+        if (this.validationMethod == null)
+            return ;
+
+        /* Get the validate status */
+        Boolean state = this.validationMethod.validate(this.miningMethod,
+                                                        validateBlockRq.getBlock());
+
+        /* Comunicate it to the rest of the network */
+        ValidateBlockRes response = new ValidateBlockRes(validateBlockRq.getBlock(), state, this);
+        System.out.println("[" + this.fullName() + "] Emitted Task: " + response.getMessage());
+        this.getTopParent().broadcast(response);
     }
 
     @Override

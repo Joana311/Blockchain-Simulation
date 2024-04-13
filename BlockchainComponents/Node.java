@@ -13,7 +13,7 @@ public class Node extends BlockchainComponent {
     
     private List<Transaction> nonValidatedTransactions = new ArrayList<>();
     private List<Transaction> validatedTransactions = new ArrayList<>();
-
+    
     public Node(Wallet wallet) {
         super();
         this.wallet = wallet;
@@ -36,46 +36,67 @@ public class Node extends BlockchainComponent {
         return this.nonValidatedTransactions;
     }
 
-    
-
     /*____________________________________________________________________*/
+    
+    protected void nodeMine(Transaction transaction) {
+    }
+    
+    protected void nodeValidateBlock(ValidateBlockRq validateBlockRq) {
+    }
+    
     @Override
-    public void broadcast(IMessage msg) {
+    public void broadcast(IMessage msg) {        
         msg.process(this);
-        
         if (msg instanceof TransactionNotification transactionNotification) {
-            if (this.nonValidatedTransactions.contains(transactionNotification.getTransaction()) == false)
-                this.nonValidatedTransactions.add(transactionNotification.getTransaction());
+            Transaction transaction = transactionNotification.getTransaction();
+            
+            /* If the transaction is already confirmed, msg and stop */
+            if (this.validatedTransactions.contains(transaction)) {
+                System.out.println("[" + this.fullName() + "] Transaction already confirmed: Tx" + transaction.getId());
+                return ;
+            }
+            
+            /* If the transaction is not confirmed and not no confirmed, save */
+            if (this.nonValidatedTransactions.contains(transaction) == false)
+                this.nonValidatedTransactions.add(transaction);
+            
+            /* Mine a block to the transaction (if there is posible) */
+            this.nodeMine(transaction);
         }
         
-        if (msg instanceof ValidateBlockRes validateBlockRes)
-        {
+        if (msg instanceof ValidateBlockRq validateBlockRq) {
+            /* Validate the block */
+            this.nodeValidateBlock(validateBlockRq);
+        }
+        
+        if (msg instanceof ValidateBlockRes validateBlockRes) {
+            /* Check and print the transaction info */
             Transaction transaction = validateBlockRes.getBlock().getTransaction();
             System.out.println("[" + this.fullName()+ "] Commiting transaction : " +
                     "Tx-" + transaction.getId() + " in " + this.fullName());
             System.out.println("[" + this.fullName()+ "] -> Tx details:" + transaction);
-            this.nonValidatedTransactions.remove(transaction);
-            
-            /* If the node is not part of the transaction, stop */
-            if (transaction.getOriginPublicKey() != this.wallet.getPublicKey() &&
-                    transaction.getDestinationPublicKey() != this.wallet.getPublicKey())
-                return ;
             
             /* Else, check the transaction (the pdf dont say nothing about an error, so I make a case) */
             if (validateBlockRes.getState() == false) {
-                System.out.print("[" + this.fullName() + "] No Applied Transaction: " + transaction);
+                System.out.println("[" + this.fullName() + "] No Applied Transaction: " + transaction);
                 return ;
             }
-            
+
+            /* Add the valid transaction */
+            this.nonValidatedTransactions.remove(transaction);
             this.validatedTransactions.add(transaction);
-            System.out.print("[" + this.fullName() + "] Applied Transaction: " + transaction);
+            System.out.println("[" + this.fullName() + "] Applied Transaction: " + transaction);
             
-            /* Do the changes on the balance */
-            Integer count = (transaction.getOriginPublicKey() == this.wallet.getPublicKey() ? count = -transaction.getBalance() : transaction.getBalance());
+            
+            /* If the node is not part of the transaction, stop */
+            if (transaction.getOriginPublicKey().equals(this.wallet.getPublicKey()) == false &&
+                    transaction.getDestinationPublicKey().equals(this.wallet.getPublicKey()) == false)
+                return ;
+            
+            /* Do the changes on the balance and print it */
+            Integer count = (transaction.getOriginPublicKey().equals(this.wallet.getPublicKey()) ? -1 * transaction.getBalance() : transaction.getBalance());
             this.wallet.setBalance(this.wallet.getBalance() + count);
-            
             System.out.println("[" + this.fullName() + "] New wallet value: " + this.wallet);
-            
         }
     }
 
