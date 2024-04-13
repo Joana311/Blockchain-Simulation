@@ -13,8 +13,8 @@ public abstract class ValidateBlock implements IMessage{
     
     @Override
     public void process(Node n) {
-        System.out.println("[" + n.fullName() + "]" +
-                "Receibed task: " + this.getMessage());
+        System.out.println("[" + n.fullName() + "] " +
+                "Received task: " + this.getMessage());
     }
     
 }
