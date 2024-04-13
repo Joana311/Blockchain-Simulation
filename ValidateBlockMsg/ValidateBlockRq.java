@@ -2,9 +2,8 @@ package ValidateBlockMsg;
 
 import BlockchainComponents.*;
 import Block.*;
-import Interfaces.*;
 
-public class ValidateBlockRq implements IMessage {
+public class ValidateBlockRq extends ValidateBlock {
     private final Block block;
     private final Node node;
     
