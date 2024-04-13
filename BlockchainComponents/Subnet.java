@@ -2,6 +2,8 @@ package BlockchainComponents;
 
 import java.util.*;
 import Interfaces.*;
+import Transaction.*;
+import ValidateBlockMsg.*;
 
 public class Subnet extends BlockchainComponent {
 
@@ -28,7 +30,12 @@ public class Subnet extends BlockchainComponent {
     /*____________________________________________________________________*/
     @Override
     public void broadcast(IMessage msg) {
-        System.out.println("[" + this.fullName() + "] " + msg.getMessage());
+        System.out.print("[" + this.fullName() + "] ");
+        if (msg instanceof TransactionNotification)
+            System.out.println(msg.getMessage());
+        else if (msg instanceof ValidateBlockRq)
+            System.out.println("ValidateBlockRq");
+        
         System.out.println("Broadcasting to " + this.nodes.size() + " nodes:");
         for (Node node : this.nodes) {
             node.broadcast(msg);
