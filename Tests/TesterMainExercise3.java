@@ -14,7 +14,7 @@ public class TesterMainExercise3 extends TesterMainExercise2 {
         this.miningNode2.setMiningMethod(new SimpleMining());
         this.miningNode2.setValidationMethod(new SimpleValidate());
         network.broadcast(new TransactionNotification(
-                node.createTransaction(wallet2.getPublicKey(), 100)));
+                node.createTransaction(wallet2.getPublicKey(), 5)));
     }
 
     public static void main(String[] args) {
