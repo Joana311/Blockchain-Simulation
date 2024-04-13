@@ -29,6 +29,7 @@ public class Subnet extends BlockchainComponent {
     @Override
     public void broadcast(IMessage msg) {
         System.out.println("[" + this.fullName() + "] " + msg.getMessage());
+        System.out.println("Broadcasting to " + this.nodes.size() + " nodes:");
         for (Node node : this.nodes) {
             node.broadcast(msg);
         }
