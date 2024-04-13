@@ -100,10 +100,10 @@ public class MiningNode extends Node {
             Boolean state = this.validationMethod.validate(this.miningMethod,
                                                             validateBlockRq.getBlock());
             
-            System.out.println("==> " + state);
-            
+            ValidateBlockRes response = new ValidateBlockRes(validateBlockRq.getBlock(), state, this);
+            System.out.println("[" + this.fullName() + "] Emitted Task: " + response.getMessage());
             System.exit(1);
-            
+            this.getTopParent().broadcast(response);
         }
         
     }
