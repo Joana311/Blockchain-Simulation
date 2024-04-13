@@ -28,6 +28,6 @@ public class ValidateBlockRq extends ValidateBlock {
     @Override
     public String getMessage() {
         return "ValidateBlockRq: <b:" + this.block.getId() +
-                ", src: " + this.node.getId() + ">";
+                ", src: " + this.node.formatId() + ">";
     }
 }
