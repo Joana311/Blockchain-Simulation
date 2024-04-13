@@ -5,6 +5,7 @@ import Wallet.*;
 import Block.*;
 import java.util.*;
 import Transaction.*;
+import ValidateBlockMsg.*;
 
 public class MiningNode extends Node {
 
@@ -49,21 +50,41 @@ public class MiningNode extends Node {
     /*____________________________________________________________________*/
     @Override
     public void broadcast(IMessage msg) {
-        Transaction transaction = null;
         
-        if (msg instanceof TransactionNotification transactionNotification) {
+        /*if (msg instanceof TransactionNotification transactionNotification) {
             transaction = transactionNotification.getTransaction();
         }
         
-        /* If the transaction is not stored, is stored and a block is created and validated */
-        if (this.validatedTransactions.contains(transaction) == false &&
+        if (transaction != null && this.validatedTransactions.contains(transaction) == false &&
                 this.miningMethod != null && this.validationMethod != null) {
             
             Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
             
             this.validatedTransactions.add(transaction);
-            this.miningMethod.mineBlock(transaction, lastValidatedBlock, this.getWallet().getPublicKey());
-            //this.getTopParent().broadcast();
+            Block minedBlock = this.miningMethod.mineBlock(transaction, lastValidatedBlock,
+                    this.getWallet().getPublicKey());
+            
+            this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
+        }*/
+        
+        msg.process(this);
+        if (msg instanceof TransactionNotification transactionNotification) {
+            Transaction transaction = transactionNotification.getTransaction();
+            
+            /* If there is any problem trying to mine, exit the function */
+            if (this.miningMethod == null || this.validationMethod == null ||
+                    transaction == null || this.validatedTransactions.contains(transaction) == true)
+                return ;            
+            /* Get the info to mine and mine */
+            Block lastValidatedBlock = (this.validatedBlock.isEmpty() ? null : this.validatedBlock.getLast());
+            this.validatedTransactions.add(transaction);
+            Block minedBlock = this.miningMethod.mineBlock(transaction, lastValidatedBlock,
+                    this.getWallet().getPublicKey());
+            
+            System.out.println("[" + this.fullName() + "] Mined block: " + minedBlock);
+            
+            System.exit(1);
+            this.getTopParent().broadcast(new ValidateBlockRq(minedBlock, this));
         }
     }
 
