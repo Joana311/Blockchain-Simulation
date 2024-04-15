@@ -1,6 +1,6 @@
 package Tests;
 
-import Interfaces.*;
+import Notifications.TransactionNotification;
 import Transaction.*;
 import Exceptions.*;
 

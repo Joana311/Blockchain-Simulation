@@ -1,7 +1,6 @@
-package ValidateBlockMsg;
+package Notifications;
 
 import BlockchainComponents.*;
-import Interfaces.*;
 
 public abstract class ValidateBlock implements IMessage {
 

@@ -1,11 +1,13 @@
 package BlockchainComponents;
 
+import Notifications.IMessage;
+import Notifications.ValidateBlockRq;
+import Notifications.ValidateBlockRes;
+import Notifications.TransactionNotification;
 import java.util.*;
 import Transaction.*;
 import Wallet.*;
-import Interfaces.*;
 import Exceptions.*;
-import ValidateBlockMsg.*;
 
 public class Node extends BlockchainComponent {
 

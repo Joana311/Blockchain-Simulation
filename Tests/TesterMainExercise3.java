@@ -1,5 +1,6 @@
 package Tests;
 
+import Notifications.TransactionNotification;
 import Transaction.*;
 import Wallet.*;
 import MiningMethods.*;

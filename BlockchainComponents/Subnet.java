@@ -1,9 +1,11 @@
 package BlockchainComponents;
 
+import Notifications.IMessage;
+import Notifications.ValidateBlockRq;
+import Notifications.ValidateBlockRes;
+import Notifications.TransactionNotification;
 import java.util.*;
-import Interfaces.*;
 import Transaction.*;
-import ValidateBlockMsg.*;
 
 public class Subnet extends BlockchainComponent {
 

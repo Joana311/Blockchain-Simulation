@@ -1,13 +1,13 @@
 package BlockchainComponents;
 
+import Notifications.ValidateBlockRq;
+import Notifications.ValidateBlockRes;
 import ValidateMethods.IValidateMethod;
 import MiningMethods.IMiningMethod;
-import Interfaces.*;
 import Wallet.*;
 import Block.*;
 import java.util.*;
 import Transaction.*;
-import ValidateBlockMsg.*;
 
 public class MiningNode extends Node {
 

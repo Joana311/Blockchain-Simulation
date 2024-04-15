@@ -1,5 +1,6 @@
-package ValidateBlockMsg;
+package Notifications;
 
+import Notifications.ValidateBlock;
 import Block.*;
 import BlockchainComponents.*;
 

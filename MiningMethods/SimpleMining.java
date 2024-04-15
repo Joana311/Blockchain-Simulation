@@ -3,7 +3,6 @@ package MiningMethods;
 import Block.Block;
 import CommonUtils.BlockConfig;
 import CommonUtils.CommonUtils;
-import Interfaces.*;
 import Transaction.Transaction;
 
 public class SimpleMining implements IMiningMethod {
