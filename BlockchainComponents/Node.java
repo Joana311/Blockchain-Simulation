@@ -11,8 +11,8 @@ public class Node extends BlockchainComponent {
 
     private Wallet wallet;
 
-    private List<Transaction> nonValidatedTransactions = new ArrayList<>();
-    private List<Transaction> validatedTransactions = new ArrayList<>();
+    protected List<Transaction> nonValidatedTransactions = new ArrayList<>();
+    protected List<Transaction> validatedTransactions = new ArrayList<>();
 
     public Node(Wallet wallet) {
         super();

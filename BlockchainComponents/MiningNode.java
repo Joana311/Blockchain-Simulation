@@ -10,7 +10,7 @@ import ValidateBlockMsg.*;
 public class MiningNode extends Node {
 
     Integer balance;
-    private List<Transaction> validatedTransactions = new ArrayList<>();
+    /*private List<Transaction> validatedTransactions = new ArrayList<>();*/
     private List<Block> validatedBlock = new ArrayList<>();
     IMiningMethod miningMethod;
     IValidateMethod validationMethod;
@@ -29,10 +29,6 @@ public class MiningNode extends Node {
 
     public void setBalance(Integer balance) {
         this.balance = balance;
-    }
-
-    public List<Transaction> getValidatedTransactions() {
-        return this.validatedTransactions;
     }
 
     public List<Block> getValidatedBlock() {
