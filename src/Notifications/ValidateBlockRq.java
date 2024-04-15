@@ -10,10 +10,6 @@ import Block.*;
  * @author Gonzalo Jiménez, Luis Pastor
  */
 public class ValidateBlockRq extends ValidateBlock {
-
-    private final Block block;
-    private final Node node;
-
     /**
      * Constructs a ValidateBlockRq object with the specified block and node.
      *
@@ -21,26 +17,7 @@ public class ValidateBlockRq extends ValidateBlock {
      * @param node the node requesting the validation
      */
     public ValidateBlockRq(Block block, Node node) {
-        this.block = block;
-        this.node = node;
-    }
-
-    /**
-     * Returns the block to be validated.
-     *
-     * @return the block to be validated
-     */
-    public Block getBlock() {
-        return this.block;
-    }
-
-    /**
-     * Returns the node requesting the validation.
-     *
-     * @return the node requesting the validation
-     */
-    public Node getNode() {
-        return this.node;
+        super(block, node);
     }
 
     /**
