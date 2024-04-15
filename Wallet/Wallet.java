@@ -2,7 +2,7 @@ package Wallet;
 
 /**
  * This class represents a Wallet object.
- * 
+ *
  * @author Gonzalo Jiménez, Luis Pastor
  */
 public class Wallet {
@@ -12,11 +12,12 @@ public class Wallet {
     private Integer balance;
 
     /**
-     * Constructs a Wallet object with the specified name, public key, and balance.
-     * 
-     * @param name      the name of the wallet
+     * Constructs a Wallet object with the specified name, public key, and
+     * balance.
+     *
+     * @param name the name of the wallet
      * @param publicKey the public key of the wallet
-     * @param balance   the balance of the wallet
+     * @param balance the balance of the wallet
      */
     public Wallet(String name, String publicKey, Integer balance) {
         this.name = name;
@@ -26,7 +27,7 @@ public class Wallet {
 
     /**
      * Returns the name of the wallet.
-     * 
+     *
      * @return the name of the wallet
      */
     public String getName() {
@@ -35,7 +36,7 @@ public class Wallet {
 
     /**
      * Sets the name of the wallet.
-     * 
+     *
      * @param name the name of the wallet
      */
     public void setName(String name) {
@@ -44,7 +45,7 @@ public class Wallet {
 
     /**
      * Returns the public key of the wallet.
-     * 
+     *
      * @return the public key of the wallet
      */
     public String getPublicKey() {
@@ -53,7 +54,7 @@ public class Wallet {
 
     /**
      * Sets the public key of the wallet.
-     * 
+     *
      * @param hash the public key of the wallet
      */
     public void setPublicKey(String hash) {
@@ -62,7 +63,7 @@ public class Wallet {
 
     /**
      * Returns the balance of the wallet.
-     * 
+     *
      * @return the balance of the wallet
      */
     public Integer getBalance() {
@@ -71,7 +72,7 @@ public class Wallet {
 
     /**
      * Sets the balance of the wallet.
-     * 
+     *
      * @param balance the balance of the wallet
      */
     public void setBalance(Integer balance) {
@@ -80,7 +81,7 @@ public class Wallet {
 
     /**
      * Returns a string representation of the wallet.
-     * 
+     *
      * @return a string representation of the wallet
      */
     @Override

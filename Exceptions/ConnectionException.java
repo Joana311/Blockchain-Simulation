@@ -3,8 +3,8 @@ package Exceptions;
 import BlockchainComponents.*;
 
 /**
- * This exception is thrown when a connection to a node in the network is already established.
- * It extends the RuntimeException class.
+ * This exception is thrown when a connection to a node in the network is
+ * already established. It extends the RuntimeException class.
  *
  * @author Gonzalo Jimenez, Luis Pastor
  */

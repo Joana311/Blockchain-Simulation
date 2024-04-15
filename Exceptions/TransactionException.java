@@ -1,8 +1,8 @@
 package Exceptions;
 
 /**
- * This class represents a custom exception for transaction-related errors.
- * It extends the RuntimeException class.
+ * This class represents a custom exception for transaction-related errors. It
+ * extends the RuntimeException class.
  *
  * @author Gonzalo Jiménez, Luis Pastor
  */
@@ -13,12 +13,12 @@ public class TransactionException extends RuntimeException {
     private final Integer balance;
 
     /**
-     * Constructs a new TransactionException with the specified origin public key,
-     * destination public key, and balance.
+     * Constructs a new TransactionException with the specified origin public
+     * key, destination public key, and balance.
      *
-     * @param originPublicKey      the public key of the transaction origin
+     * @param originPublicKey the public key of the transaction origin
      * @param destinationPublicKey the public key of the transaction destination
-     * @param balance              the balance of the transaction
+     * @param balance the balance of the transaction
      */
     public TransactionException(String originPublicKey, String destinationPublicKey, Integer balance) {
         this.originPublicKey = originPublicKey;

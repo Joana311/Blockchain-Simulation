@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * Represents a subnet in a blockchain network.
- * 
+ *
  * @author Gonzalo Jimenez, Luis Pastor
  */
 public class Subnet extends BlockchainComponent {

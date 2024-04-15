@@ -4,8 +4,8 @@ import BlockchainComponents.*;
 import Block.*;
 
 /**
- * This class represents a request to validate a block in the blockchain.
- * It extends the ValidateBlock class.
+ * This class represents a request to validate a block in the blockchain. It
+ * extends the ValidateBlock class.
  *
  * @author Gonzalo Jiménez, Luis Pastor
  */

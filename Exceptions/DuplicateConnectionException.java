@@ -3,8 +3,8 @@ package Exceptions;
 import BlockchainComponents.*;
 
 /**
- * This exception is thrown when a duplicate connection is detected in the blockchain network.
- * It is a subclass of ConnectionException.
+ * This exception is thrown when a duplicate connection is detected in the
+ * blockchain network. It is a subclass of ConnectionException.
  *
  * @author Gonzalo Jiménez, Luis Pastor
  */

@@ -3,8 +3,8 @@ package Notifications;
 import Transaction.Transaction;
 
 /**
- * This class represents a transaction notification message.
- * It implements the IMessage interface.
+ * This class represents a transaction notification message. It implements the
+ * IMessage interface.
  *
  * @author Gonzalo Jiménez, Luis Pastor
  */

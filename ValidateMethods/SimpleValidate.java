@@ -4,9 +4,9 @@ import MiningMethods.IMiningMethod;
 import Block.*;
 
 /**
- * This class represents a simple validation method for blocks.
- * It implements the IValidateMethod interface.
- * 
+ * This class represents a simple validation method for blocks. It implements
+ * the IValidateMethod interface.
+ *
  * @author Gonzalo Jiménez, Luis Pastor
  */
 public class SimpleValidate implements IValidateMethod {
@@ -19,7 +19,7 @@ public class SimpleValidate implements IValidateMethod {
 
     /**
      * Validates a block using a mining method.
-     * 
+     *
      * @param miningMethod the mining method used to create the hash
      * @param block the block to be validated
      * @return true if the block is valid, false otherwise

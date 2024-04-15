@@ -5,7 +5,7 @@ import BlockchainComponents.*;
 
 /**
  * Class ValidateBlockRes extends ValidateBlock.
- * 
+ *
  * @author Gonzalo Jiménez, Luis Pastor
  */
 public class ValidateBlockRes extends ValidateBlock {
@@ -16,7 +16,7 @@ public class ValidateBlockRes extends ValidateBlock {
 
     /**
      * Constructor for ValidateBlockRes.
-     * 
+     *
      * @param block The block to be validated.
      * @param state The validation state.
      * @param nodeValidated The node that validated the block.
@@ -29,7 +29,7 @@ public class ValidateBlockRes extends ValidateBlock {
 
     /**
      * Get the block to be validated.
-     * 
+     *
      * @return The block to be validated.
      */
     public Block getBlock() {
@@ -38,7 +38,7 @@ public class ValidateBlockRes extends ValidateBlock {
 
     /**
      * Get the validation state.
-     * 
+     *
      * @return The validation state.
      */
     public boolean getState() {
@@ -47,7 +47,7 @@ public class ValidateBlockRes extends ValidateBlock {
 
     /**
      * Get the node that validated the block.
-     * 
+     *
      * @return The node that validated the block.
      */
     public Node getNode() {
@@ -56,7 +56,7 @@ public class ValidateBlockRes extends ValidateBlock {
 
     /**
      * Get the message for ValidateBlockRes.
-     * 
+     *
      * @return The message for ValidateBlockRes.
      */
     @Override
