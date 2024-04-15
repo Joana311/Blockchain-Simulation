@@ -10,6 +10,12 @@ public class SimpleMining implements IMiningMethod {
     public SimpleMining() {
     }
 
+    /**
+     * Function to create a block hash
+     *
+     * @param block Block te create the hash
+     * @return The hash
+     */
     @Override
     public String createHash(Block block) {
         String buffer;
@@ -23,6 +29,14 @@ public class SimpleMining implements IMiningMethod {
         return CommonUtils.sha256(buffer);
     }
 
+    /**
+     * Function to create a block to a transaction
+     *
+     * @param transaction Transaction to do
+     * @param previousConfirmedBlock Previous block confirmed
+     * @param minerKey Key of the miner node
+     * @return Block created
+     */
     @Override
     public Block mineBlock(Transaction transaction, Block previousConfirmedBlock, String minerKey) {
         Block block = new Block(transaction);
