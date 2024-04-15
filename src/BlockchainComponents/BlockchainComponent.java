@@ -57,15 +57,15 @@ public abstract class BlockchainComponent implements IConnectable {
     }
 
     /**
-     * @brief Function to recieve the full name of a BlockchainComponent, , with
-     * a '#' between the component type and its id
+     * Function to recieve the full name of a BlockchainComponent, with
+     * a hashtag between the component type and its id
      *
-     * @return the full name of the node. Ex.: "<ComponentType>#<ID>"
+     * @return the full name of the node. Ex.: "ComponentType#ID"
      */
     public abstract String fullName();
 
     /**
-     * @brief Function to get the id formatted with 3 numbers.
+     * Function to get the id formatted with 3 numbers.
      *
      * @return The id formatted
      */
