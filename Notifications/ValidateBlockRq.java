@@ -1,6 +1,5 @@
 package Notifications;
 
-import Notifications.ValidateBlock;
 import BlockchainComponents.*;
 import Block.*;
 

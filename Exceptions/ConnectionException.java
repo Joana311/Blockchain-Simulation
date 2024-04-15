@@ -4,7 +4,7 @@ import BlockchainComponents.*;
 
 public class ConnectionException extends RuntimeException {
 
-    private Node node;
+    private final Node node;
 
     public ConnectionException(Node node) {
         this.node = node;

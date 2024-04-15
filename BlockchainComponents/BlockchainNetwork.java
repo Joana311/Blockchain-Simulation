@@ -2,7 +2,6 @@ package BlockchainComponents;
 
 import Notifications.IMessage;
 import java.util.*;
-import BlockchainComponents.*;
 import Exceptions.*;
 
 public class BlockchainNetwork implements IConnectable {

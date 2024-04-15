@@ -1,7 +1,5 @@
 package Exceptions;
 
-import Wallet.*;
-
 public class TransactionException extends RuntimeException {
 
     private final String originPublicKey;

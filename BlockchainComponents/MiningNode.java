@@ -13,7 +13,7 @@ public class MiningNode extends Node {
 
     Integer balance;
     /*private List<Transaction> validatedTransactions = new ArrayList<>();*/
-    private List<Block> validatedBlock = new ArrayList<>();
+    private final List<Block> validatedBlock = new ArrayList<>();
     IMiningMethod miningMethod;
     IValidateMethod validationMethod;
 

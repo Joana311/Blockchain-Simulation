@@ -1,14 +1,13 @@
 package Notifications;
 
-import Notifications.ValidateBlock;
 import Block.*;
 import BlockchainComponents.*;
 
 public class ValidateBlockRes extends ValidateBlock {
 
-    private Block block;
-    private boolean state;
-    private Node nodeValidated;
+    private final Block block;
+    private final boolean state;
+    private final Node nodeValidated;
 
     public ValidateBlockRes(Block block, boolean state, Node nodeValidated) {
         this.block = block;

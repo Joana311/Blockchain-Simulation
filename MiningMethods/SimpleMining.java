@@ -11,13 +11,6 @@ public class SimpleMining implements IMiningMethod {
     }
 
     /*____________________________________________________________________*/
- /*
-        Version del bloque
-        Hash del bloque anterior o GENESIS_BLOCK
-        Timestamp
-        Dificultad
-        Nonce
-     */
     @Override
     public String createHash(Block block) {
         String buffer;

@@ -5,7 +5,6 @@ import Notifications.ValidateBlockRq;
 import Notifications.ValidateBlockRes;
 import Notifications.TransactionNotification;
 import java.util.*;
-import Transaction.*;
 
 public class Subnet extends BlockchainComponent {
 

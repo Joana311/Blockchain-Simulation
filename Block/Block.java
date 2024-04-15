@@ -8,16 +8,16 @@ public class Block {
 
     private static Integer count = 0;
 
-    private Integer id;
-    private Integer version;
-    private Integer Nonce;
-    private Integer timestamp;
-    private Integer difficulty;
+    private final Integer id;
+    private final Integer version;
+    private final Integer Nonce;
+    private final Integer timestamp;
+    private final Integer difficulty;
     private boolean validated;
     private String hash;
     private Block previous;
 
-    private Transaction transaction;
+    private final Transaction transaction;
     private String minerKey;
 
     public Block(Transaction transaction) {

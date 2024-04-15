@@ -6,7 +6,7 @@ public abstract class BlockchainComponent implements IConnectable {
 
     private static Integer count = 0;
 
-    private Integer id;
+    private final Integer id;
     private IConnectable parent;
 
     public BlockchainComponent() {
