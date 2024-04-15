@@ -6,10 +6,20 @@ import Notifications.ValidateBlockRes;
 import Notifications.TransactionNotification;
 import java.util.*;
 
+/**
+ * Represents a subnet in a blockchain network.
+ * 
+ * @author Gonzalo Jimenez, Luis Pastor
+ */
 public class Subnet extends BlockchainComponent {
 
     private List<Node> nodes = new ArrayList<>();
 
+    /**
+     * Constructs a Subnet object with the given nodes.
+     *
+     * @param nodes the nodes to be added to the subnet
+     */
     public Subnet(Node... nodes) {
         super();
 
@@ -19,16 +29,29 @@ public class Subnet extends BlockchainComponent {
         }
     }
 
-    /*____________________________________________________________________*/
+    /**
+     * Returns the list of nodes in the subnet.
+     *
+     * @return the list of nodes in the subnet
+     */
     public List<Node> getNodes() {
         return this.nodes;
     }
 
+    /**
+     * Sets the list of nodes in the subnet.
+     *
+     * @param nodes the list of nodes to be set
+     */
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
 
-    /*____________________________________________________________________*/
+    /**
+     * Broadcasts a message to all the nodes in the subnet.
+     *
+     * @param msg the message to be broadcasted
+     */
     @Override
     public void broadcast(IMessage msg) {
         System.out.print("[" + this.fullName() + "] ");
@@ -46,12 +69,21 @@ public class Subnet extends BlockchainComponent {
         }
     }
 
+    /**
+     * Returns the full name of the subnet.
+     *
+     * @return the full name of the subnet
+     */
     @Override
     public String fullName() {
         return "Subnet#" + this.formatId();
     }
 
-    /*____________________________________________________________________*/
+    /**
+     * Returns a string representation of the subnet.
+     *
+     * @return a string representation of the subnet
+     */
     @Override
     public String toString() {
         String buffer;

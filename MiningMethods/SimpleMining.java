@@ -5,6 +5,7 @@ import CommonUtils.BlockConfig;
 import CommonUtils.CommonUtils;
 import Transaction.Transaction;
 
+
 public class SimpleMining implements IMiningMethod {
 
     public SimpleMining() {
