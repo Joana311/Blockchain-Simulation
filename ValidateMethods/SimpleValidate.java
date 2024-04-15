@@ -1,5 +1,6 @@
 package ValidateMethods;
 
+import MiningMethods.IMiningMethod;
 import Interfaces.*;
 import Block.*;
 

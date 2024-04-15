@@ -1,4 +1,6 @@
-package Interfaces;
+package BlockchainComponents;
+
+import Interfaces.IMessage;
 
 public interface IConnectable {
 

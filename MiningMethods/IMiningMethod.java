@@ -1,4 +1,4 @@
-package Interfaces;
+package MiningMethods;
 
 import Block.*;
 import Transaction.*;

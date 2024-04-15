@@ -1,5 +1,7 @@
 package BlockchainComponents;
 
+import ValidateMethods.IValidateMethod;
+import MiningMethods.IMiningMethod;
 import Interfaces.*;
 import Wallet.*;
 import Block.*;

@@ -1,5 +1,6 @@
-package Interfaces;
+package ValidateMethods;
 
+import MiningMethods.IMiningMethod;
 import Block.*;
 
 public interface IValidateMethod {
